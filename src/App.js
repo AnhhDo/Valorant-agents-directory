@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import List from "./component/card-list/list.component";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const [agents, setAgent] = useState([]);
+
+  useEffect(() => {
+    fetch("https://valorant-api.com/v1/agents")
+      .then((response) => response.json())
+      .then((response) => setAgent(response.data));
+  }, []);
+  console.log(agents);
+  return (<div className="App">
+    <List agents={agents} />
+  </div>)
+};
 
 export default App;
