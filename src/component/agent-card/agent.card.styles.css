@@ -1,4 +1,25 @@
 img{
-    max-width: 20%;
-    max-height: 20%;
+    max-width: 100%;
+    max-height: 100%;
+}
+.agent-card {
+    display: flex;
+    flex-direction: column;
+    background-color: wheat;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 25px;
+    cursor: pointer;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+}
+
+.agent-card:hover {
+    transform: scale(1.05);
+}
+
+h3{
+    font-family: 'VALORANT', sans-serif;
 }

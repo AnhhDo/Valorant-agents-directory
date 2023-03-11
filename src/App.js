@@ -11,9 +11,13 @@ const App = () => {
       .then((response) => setAgent(response.data));
   }, []);
   console.log(agents);
-  return (<div className="App">
-    <List agents={agents} />
-  </div>)
+
+  return (
+    <div className="App">
+      <h1>Valorant agent</h1>
+      <List agents={agents} />
+    </div>
+  );
 };
 
 export default App;
