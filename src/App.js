@@ -1,21 +1,35 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import List from "./component/card-list/list.component";
 import "./App.css";
+import SearchBar from "./component/search-bar/search-bar";
 
 const App = () => {
   const [agents, setAgent] = useState([]);
+  const [filteredAgents, setFilteredAgent] = useState([]);
 
   useEffect(() => {
-    fetch("https://valorant-api.com/v1/agents")
-      .then((response) => response.json())
-      .then((response) => setAgent(response.data));
+    axios.get("https://valorant-api.com/v1/agents")
+      .then((response) => {setAgent(response.data.data)
+      console.log(response)});
   }, []);
-  console.log(agents);
+
+  useEffect(()=>{
+    setFilteredAgent(agents);
+  },[agents])
+
+  const handleInputChange = (event) => {
+    const inputName = event.target.value.toLowerCase();
+    setFilteredAgent(
+      agents.filter(({displayName}) => displayName.toLowerCase().includes(inputName))
+    );
+  };
 
   return (
     <div className="App">
       <h1>Valorant agent</h1>
-      <List agents={agents} />
+      <SearchBar handleInputChange={handleInputChange}></SearchBar>
+      <List agents={filteredAgents} />
     </div>
   );
 };
