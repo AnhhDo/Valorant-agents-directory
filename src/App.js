@@ -3,6 +3,7 @@ import axios from "axios";
 import List from "./component/card-list/list.component";
 import "./App.css";
 import SearchBar from "./component/search-bar/search-bar";
+import DropDown from "./component/drop-down-menu/drop-down-menu";
 
 const App = () => {
   const [agents, setAgent] = useState([]);
@@ -25,10 +26,16 @@ const App = () => {
     );
   };
 
+  const sortByName = () => {
+    const sorted = filteredAgents.sort();
+    console.log(sorted)
+  }
+
   return (
     <div className="App">
       <h1>Valorant agent</h1>
       <SearchBar handleInputChange={handleInputChange}></SearchBar>
+      <DropDown sortByName={sortByName}></DropDown>
       <List agents={filteredAgents} />
     </div>
   );
